@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BUCKET BUDDY</title>
+    {% load static %}
+    <!-- plugins:css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors/iconfonts/mdi/css/materialdesignicons.css' %}"
+    />
+    <!-- endinject -->
+    <!-- vendor css for this page -->
+    <!-- End vendor css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'css/shared/style.css' %}" />
+    <!-- endinject -->
+    <!-- Layout style -->
+    <link rel="stylesheet" href="{% static 'css/demo_1/style.css' %}" />
+    <!-- Layout style -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+  </head>
+  <body>
+    {% include 'partials/_header.html' %} {% block content %} {% endblock %}
+    <!-- jquery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!--page body ends -->
+    <!-- SCRIPT LOADING START FORM HERE /////////////-->
+    <!-- plugins:js -->
+    <script src="{% static 'vendors/js/core.js' %}"></script>
+
+    <!-- endinject -->
+    <!-- Vendor Js For This Page Ends-->
+    <script src="{% static 'vendors/apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'vendors/chartjs/Chart.min.js' %}"></script>
+    <script src="{% static 'js/charts/chartjs.addon.js' %}"></script>
+    
+    <!-- Vendor Js For This Page Ends-->
+    <!-- build:js -->
+    <script src="{% static 'js/template.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+  </body>
+</html>
