@@ -222,50 +222,6 @@
   display: flex;
   align-items: center;
 }
-
-.item-purchase-banner {
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  height: $purchase-banner-height;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-  z-index: 9990;
-  background-image: $purchase-banner-bg;
-  color: $purchase-banner-color;
-
-  .banner-text {
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: 15px;
-    font-weight: 400;
-    color: $purchase-banner-color;
-
-    .rtl & {
-      margin-right: auto;
-      margin-left: 15px;
-    }
-  }
-
-  .banner-button {
-    background-image: $purchase-button-bg;
-    border: none;
-    color: $purchase-banner-color;
-  }
-
-  .toggler-close {
-    margin-left: auto;
-    color: $purchase-banner-color;
-
-    .rtl & {
-      margin-right: auto;
-      margin-left: 0;
-    }
-  }
-}
-
 .sidebar-upgrade-banner {
   margin: 0px 20px;
   border-radius: 4px;
