@@ -9822,37 +9822,6 @@ table {
   display: flex;
   align-items: center; }
 
-.item-purchase-banner {
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  height: 55px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-  z-index: 9990;
-  background-image: linear-gradient(109.6deg, #141e30 11.2%, #243b55 91.1%);
-  color: #fff; }
-  .item-purchase-banner .banner-text {
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: 15px;
-    font-weight: 400;
-    color: #fff; }
-    .rtl .item-purchase-banner .banner-text {
-      margin-right: auto;
-      margin-left: 15px; }
-  .item-purchase-banner .banner-button {
-    background-image: linear-gradient(135deg, #6B73FF 10%, #000DFF 100%);
-    border: none;
-    color: #fff; }
-  .item-purchase-banner .toggler-close {
-    margin-left: auto;
-    color: #fff; }
-    .rtl .item-purchase-banner .toggler-close {
-      margin-right: auto;
-      margin-left: 0; }
 
 .sidebar-upgrade-banner {
   margin: 0px 20px;
