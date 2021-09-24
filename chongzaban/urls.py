@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from chongzaban import views
-# image #
+
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,4 +26,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')), # allauth
     path('buckets/', include('buckets.urls')), # bucketlist
     path('user/', include('user.urls')), # user
+    path('board/', include('board.urls')),#게시판
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

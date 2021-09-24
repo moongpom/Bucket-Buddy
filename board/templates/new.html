@@ -1,0 +1,14 @@
+{%extends 'shared/base.html'%}
+
+{%block content%}
+   
+    {% load static %}
+    <br><br><br>
+    <form  method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <table>
+            {{postsform.as_table}}
+        </table>
+        <br><button type="submit">올리기</button>
+    </form>
+    {%endblock%}
