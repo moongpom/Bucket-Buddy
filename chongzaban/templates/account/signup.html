@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+    {% load i18n %}
+    {% load account socialaccount %}
+    {% load static %}
+    
+    <!-- 위치 api -->
+    <script type="text/javascript"
+  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ae62fa65184acae545a359f6f14c8d0&libraries=services"></script>
+
+
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'vendors/iconfonts/mdi/css/materialdesignicons.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.addons.css' %}" />
+    <!-- endinject -->
+    <!-- vendor css for this page -->
+    <!-- End vendor css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'css/shared/style.css' %}" />
+    <!-- endinject -->
+    <!-- Layout style -->
+    <link rel="stylesheet" href="{% static 'css/demo_1/style.css' %}">
+    <!-- Layout style -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+  </head>
+  <body>
+    <div class="authentication-theme auth-style_1">
+      <div class="row">
+        <div class="col-12 logo-section">
+          <a href="{% url 'main' %}" class="logo">
+            <img src="{% static 'images/logo.svg' %}" alt="logo" />
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-5 col-md-7 col-sm-9 col-11 mx-auto">
+          <div class="grid">
+            <div class="grid-body">
+              <div class="row">
+                <div class="col-lg-7 col-md-8 col-sm-9 col-12 mx-auto form-wrapper">
+                  {% load widget_tweaks %}
+                  <form method="POST" action="{% url 'account_signup' %}" id="account">
+                    {% csrf_token %}
+                    <div class="form-group input-rounded">
+                      <label>{{form.username.label}}</label>
+                      {% render_field form.username class="form-control" placeholder="username" %}
+                      {% for error in form.username.errors %}
+                      <span class="help-block">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    <div class="form-group input-rounded">
+                      <label>{{form.signup.label}}</label>
+                      {% render_field form.signup class="form-control" placeholder="Username" %}
+                      {% for error in form.signup.errors %}
+                      <span class="help-block">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    <div class="form-group input-rounded">
+                      <label>{{form.password.label}}</label>
+                      {% render_field form.password class="form-control" placeholder='User password' %}
+                      {% for error in form.password.errors %}
+                      <span class="help-block">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    <div class="form-group input-rounded">
+                      <label>{{form.address.label}}</label>
+                      {% render_field form.address id="display-address" class="form-control" placeholder='address' %}
+                      {% for error in form.address.errors %}
+                      <span class="help-block">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block"> Sign Up </button>
+                  </form>
+                  <div class="signup-link">
+                    <p>Already have account</p>
+                    <a href="{% url 'account_login' %}">Login</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="auth_footer">
+        <p class="text-muted text-center">© Label Inc 2019</p>
+      </div>
+    </div>
+    <!--page body ends -->
+    <!-- SCRIPT LOADING START FORM HERE /////////////-->
+    <!-- plugins:js -->
+    <script src="{% static 'vendors/js/core.js' %}"></script>
+    <script src="{% static 'vendors/js/vendor.addons.js' %}"></script>
+    <!-- endinject -->
+    <!-- Vendor Js For This Page Ends-->
+    <!-- Vendor Js For This Page Ends-->
+    <!-- build:js -->
+    <script src="{% static 'js/template.js' %}"></script>
+    <!-- endbuild -->
+  </body>
+</html>
