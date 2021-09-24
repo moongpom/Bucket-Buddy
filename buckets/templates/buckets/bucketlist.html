@@ -1,8 +1,25 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block content %}
-<div></div>
-
-
+<div class="viewport-header">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb has-arrow">
+      <li class="breadcrumb-item">
+        <a href="#">BucketList</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Category</li>
+    </ol>
+  </nav>
+</div>
+<div>
+  {% if user.is_authenticated %}
+    <div class="btn btn-success btn-rounded">
+      <a href="{% url 'buckets:write' %}" style="text-decoration: none; font-size: 16px;">
+        버킷리스트 작성하기
+      </a>
+    </div>
+  {% else %}
+  {% endif %}
+</div>
 
 {% endblock %}
