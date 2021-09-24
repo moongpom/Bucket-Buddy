@@ -10,7 +10,7 @@
     
     <!-- 위치 api -->
     <script type="text/javascript"
-  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ae62fa65184acae545a359f6f14c8d0&libraries=services"></script>
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ae62fa65184acae545a359f6f14c8d0&libraries=services"></script>
 
 
     <!-- plugins:css -->
@@ -28,11 +28,11 @@
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
   </head>
   <body>
-    <div class="authentication-theme auth-style_1">
+    <div class="authentication-theme auth-style_1" style="margin-top: -60px;">
       <div class="row">
         <div class="col-12 logo-section">
           <a href="{% url 'main' %}" class="logo">
-            <img src="{% static 'images/logo.svg' %}" alt="logo" />
+            <img class="logo" src="{% static 'images/bucketbuddylogo1.png' %}" alt="" />
           </a>
         </div>
       </div>
@@ -45,6 +45,9 @@
                   {% load widget_tweaks %}
                   <form method="POST" action="{% url 'account_signup' %}" id="account">
                     {% csrf_token %}
+                    {% if redirect_field_value %}
+                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
                     <div class="form-group input-rounded">
                       <label>{{form.username.label}}</label>
                       {% render_field form.username class="form-control" placeholder="username" %}
@@ -53,16 +56,9 @@
                       {% endfor %}
                     </div>
                     <div class="form-group input-rounded">
-                      <label>{{form.signup.label}}</label>
-                      {% render_field form.signup class="form-control" placeholder="Username" %}
-                      {% for error in form.signup.errors %}
-                      <span class="help-block">{{ error }}</span>
-                      {% endfor %}
-                    </div>
-                    <div class="form-group input-rounded">
-                      <label>{{form.password.label}}</label>
-                      {% render_field form.password class="form-control" placeholder='User password' %}
-                      {% for error in form.password.errors %}
+                      <label>{{form.email.label}}</label>
+                      {% render_field form.email class="form-control" placeholder="email" %}
+                      {% for error in form.email.errors %}
                       <span class="help-block">{{ error }}</span>
                       {% endfor %}
                     </div>
@@ -70,6 +66,20 @@
                       <label>{{form.address.label}}</label>
                       {% render_field form.address id="display-address" class="form-control" placeholder='address' %}
                       {% for error in form.address.errors %}
+                      <span class="help-block">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    <div class="form-group input-rounded">
+                      <label>{{form.password1.label}}</label>
+                      {% render_field form.password1 class="form-control" placeholder='User password' %}
+                      {% for error in form.password1.errors %}
+                      <span class="help-block">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    <div class="form-group input-rounded">
+                      <label>{{form.password2.label}}</label>
+                      {% render_field form.password2 class="form-control" placeholder='address' %}
+                      {% for error in form.password2.errors %}
                       <span class="help-block">{{ error }}</span>
                       {% endfor %}
                     </div>
@@ -100,5 +110,30 @@
     <!-- build:js -->
     <script src="{% static 'js/template.js' %}"></script>
     <!-- endbuild -->
+    <!-- 지도 api -->
+    <script>
+      var geocoder = new kakao.maps.services.Geocoder();
+      var displayAddress = document.getElementById('display-address');
+
+      function setAddress(city, gu, dong) {
+        displayAddress.value = city + ' ' + gu + ' ' + dong;
+      };
+
+      function onGeoSuccess(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        geocoder.coord2Address(lng, lat, function(result, status){
+          if (status === kakao.maps.services.Status.OK) {
+            setAddress(result[0].address.region_1depth_name, result[0].address.region_2depth_name, result[0].address.region_3depth_name);
+          }
+        });
+      };
+
+      function onGeoError() {
+        alert("위치 정보를 찾을 수 없습니다.");
+      };
+
+      navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+    </script>
   </body>
 </html>
