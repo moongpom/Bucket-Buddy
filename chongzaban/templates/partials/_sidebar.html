@@ -10,14 +10,9 @@
       />
     </div>
     <div class="info-wrapper">
-<<<<<<< HEAD
-      <p class="user-name">User</p>
-      <h6 id="display-address" class="display-income">주소</h6>
-      <a href="{% url 'account_logout'%}">로그아웃</a>
-=======
+
       <p class="user-name" style="font-size: 20px;">{{user.username}}</p>
       <h6 id="display-address" class="display-income" style="font-size: 16px;">주소</h6>
->>>>>>> 406b1e190b02e1f1389b3c27e4509e1c27a23f23
     </div>
 
   </div>
@@ -33,7 +28,11 @@
           <a href="">My Page</a>
         </li>
         <li>
-          <a href="{% url 'account_logout' %}">Logout</a>
+          <a href="{% url 'account_logout' %}">
+            <button type="button" class="btn btn-default" style="width: 80%; margin: 3% 10% 0 10%">
+              Logout
+            </button>
+            </a>
         </li>
       </ul>
     </li>
