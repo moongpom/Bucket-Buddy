@@ -1,5 +1,22 @@
+{% load static %}
 <div class="sidebar">
   <div class="user-profile">
+    <form action="#" style="width: 80%; margin: 0 10% 0 10%;">
+      <div class="form-group input-rounded">
+        <input type="text" class="form-control" placeholder="Username" />
+      </div>
+      <div class="form-group input-rounded">
+        <input type="password" class="form-control" placeholder="Password" />
+      </div>
+      <div class="form-inline">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" class="form-check-input" />Remember me <i class="input-frame"></i>
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block"> Login </button>
+    </form>
     <div class="display-avatar animated-avatar">
       <img
         class="profile-img img-lg rounded-circle"
@@ -8,8 +25,8 @@
       />
     </div>
     <div class="info-wrapper">
-      <p class="user-name">Allen Clerk</p>
-      <h6 class="display-income">$3,400,00</h6>
+      <p class="user-name">User</p>
+      <h6 id="display-address" class="display-income">주소</h6>
     </div>
   </div>
   <ul class="navigation-menu">
