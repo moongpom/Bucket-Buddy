@@ -12,6 +12,7 @@
     <div class="info-wrapper">
       <p class="user-name">User</p>
       <h6 id="display-address" class="display-income">주소</h6>
+      <a href="{% url 'account_logout'%}">로그아웃</a>
     </div>
 
   </div>
@@ -30,13 +31,16 @@
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
         <li>
-          <a href="" target="_blank">자유게시판</a>
+          <a href="{% url 'allPost' %}">전체게시판</a>
         </li>
         <li>
-          <a href="" target="_blank">건의하기</a>
+          <a href="{% url 'free' %}" >자유게시판</a>
         </li>
         <li>
-          <a href="" target="_blank">후기</a>
+          <a href="{% url 'suggest' %}" >건의하기</a>
+        </li>
+        <li>
+          <a href="{% url 'review' %}" >후기</a>
         </li>
       </ul>
     </li>
@@ -80,7 +84,10 @@
   </ul>
   {% else %}
   <div class="user-profile">
-   로그인하라는 창띄우고<br>로그인링크걸어두기
+ 
+    로그인하세오<br>
+    <a href="{% url 'account_login'%}">로그인</a>
+    <a href="{% url 'account_signup'%}">회원가입</a>
 
   </div>
   <ul class="navigation-menu">
@@ -91,6 +98,9 @@
         <i class="mdi mdi-flask link-icon"></i>
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
+        <li>
+          <a href="{% url 'allPost' %}" target="_blank">전체게시판</a>
+        </li>
         <li>
           <a href="" target="_blank">자유게시판</a>
         </li>
