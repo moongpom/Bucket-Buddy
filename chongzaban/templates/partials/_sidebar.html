@@ -1,22 +1,7 @@
 {% load static %}
 <div class="sidebar">
+  {% if user.is_authenticated %}
   <div class="user-profile">
-    <form action="#" style="width: 80%; margin: 0 10% 0 10%;">
-      <div class="form-group input-rounded">
-        <input type="text" class="form-control" placeholder="Username" />
-      </div>
-      <div class="form-group input-rounded">
-        <input type="password" class="form-control" placeholder="Password" />
-      </div>
-      <div class="form-inline">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" class="form-check-input" />Remember me <i class="input-frame"></i>
-          </label>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary btn-block"> Login </button>
-    </form>
     <div class="display-avatar animated-avatar">
       <img
         class="profile-img img-lg rounded-circle"
@@ -28,29 +13,34 @@
       <p class="user-name">User</p>
       <h6 id="display-address" class="display-income">주소</h6>
     </div>
+
   </div>
   <ul class="navigation-menu">
-    <li class="nav-category-divider">MAIN</li>
+    <li class="nav-category-divider">MENU</li>
     <li>
       <a href="{% url 'main' %}">
-        <span class="link-title">Dashboard</span>
+        <span class="link-title">My Page</span>
         <i class="mdi mdi-gauge link-icon"></i>
       </a>
     </li>
     <li>
       <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
-        <span class="link-title">Sample Pages</span>
+        <span class="link-title">Board</span>
         <i class="mdi mdi-flask link-icon"></i>
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
         <li>
-          <a href="pages/sample-pages/login_1.html" target="_blank">Login</a>
+          <a href="" target="_blank">자유게시판</a>
         </li>
         <li>
-          <a href="pages/sample-pages/error_2.html" target="_blank">Error</a>
+          <a href="" target="_blank">건의하기</a>
+        </li>
+        <li>
+          <a href="" target="_blank">후기</a>
         </li>
       </ul>
     </li>
+    <!-- 나중에 쓸까봐 남겨둠
     <li>
       <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
         <span class="link-title">UI Elements</span>
@@ -86,26 +76,33 @@
         <i class="mdi mdi-flower-tulip-outline link-icon"></i>
       </a>
     </li>
-    <li class="nav-category-divider">DOCS</li>
-    <li>
-      <a href="docs/docs.html">
-        <span class="link-title">Documentation</span>
-        <i class="mdi mdi-asterisk link-icon"></i>
-      </a>
-    </li>
+    -->
   </ul>
-  <div class="sidebar-upgrade-banner">
-    <p class="text-gray">
-      Upgrade to
-      <b class="text-primary">PRO</b>
-      for more exciting features
-    </p>
-    <a
-      class="btn upgrade-btn"
-      target="_blank"
-      href="http://www.uxcandy.co/product/label-pro-admin-template/"
-    >
-      Upgrade to PRO
-    </a>
+  {% else %}
+  <div class="user-profile">
+   로그인하라는 창띄우고<br>로그인링크걸어두기
+
   </div>
+  <ul class="navigation-menu">
+    <li class="nav-category-divider">MENU</li>
+    <li>
+      <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
+        <span class="link-title">Board</span>
+        <i class="mdi mdi-flask link-icon"></i>
+      </a>
+      <ul class="collapse navigation-submenu" id="sample-pages">
+        <li>
+          <a href="" target="_blank">자유게시판</a>
+        </li>
+        <li>
+          <a href="" target="_blank">건의하기</a>
+        </li>
+        <li>
+          <a href="" target="_blank">후기</a>
+        </li>
+      </ul>
+    </li>
+   
+  </ul>
+  {%endif%}
 </div>
