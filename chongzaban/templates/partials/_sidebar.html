@@ -10,6 +10,7 @@
       />
     </div>
     <div class="info-wrapper">
+
       <p class="user-name" style="font-size: 20px;">{{user.username}}</p>
       <h6 id="display-address" class="display-income" style="font-size: 16px;">주소</h6>
     </div>
@@ -27,7 +28,11 @@
           <a href="">My Page</a>
         </li>
         <li>
-          <a href="{% url 'account_logout' %}">Logout</a>
+          <a href="{% url 'account_logout' %}">
+            <button type="button" class="btn btn-default" style="width: 80%; margin: 3% 10% 0 10%">
+              Logout
+            </button>
+            </a>
         </li>
       </ul>
     </li>
@@ -44,19 +49,21 @@
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
         <li>
-          <a href="" target="_blank">자유게시판</a>
+          <a href="{% url 'allPost' %}">전체게시판</a>
         </li>
         <li>
-          <a href="" target="_blank">건의하기</a>
+          <a href="{% url 'free' %}" >자유게시판</a>
         </li>
         <li>
-          <a href="" target="_blank">후기</a>
+          <a href="{% url 'suggest' %}" >건의하기</a>
+        </li>
+        <li>
+          <a href="{% url 'review' %}" >후기</a>
         </li>
       </ul>
     </li>
   </ul>
   {% else %}
-  <div class="user-profile">
     <div class="user-profile">
       <a href="{% url 'account_login' %}">
         <button type="button" class="btn btn-primary" style="width: 80%; margin: 0 10% 0 10%">
@@ -69,7 +76,6 @@
         </button>
       </a>
     </div>
-  </div>
   <ul class="navigation-menu">
     <li class="nav-category-divider">MENU</li>
     <li>
@@ -78,6 +84,9 @@
         <i class="mdi mdi-flask link-icon"></i>
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
+        <li>
+          <a href="{% url 'allPost' %}" target="_blank">전체게시판</a>
+        </li>
         <li>
           <a href="" target="_blank">자유게시판</a>
         </li>
