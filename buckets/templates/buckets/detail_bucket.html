@@ -1,0 +1,70 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block content %}
+<div class="viewport-header">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb has-arrow">
+      <li class="breadcrumb-item">
+        <a href="{% url 'buckets:view_bucket' %}">BucketList</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">{{ category }}</li>
+    </ol>
+  </nav>
+</div>
+<div class="col-lg-11">
+  <div class="grid">
+    <div class="item-wrapper">
+      <div class="table-responsive">
+        <table class="table info-table">
+          <thead>
+            <tr>
+              <th style="width: 10%;">No.</th>
+              <th style="width: 10%;">Category</th>
+              <th style="width: 10%;">Writer</th>
+              <th style="width: 68%;">Content</th>
+              <th style="width: 2%;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for bucket in buckets %}
+              <tr>
+                <th style="width: 10%;">{{ bucket.id }}</th>
+                <td style="width: 10%;">{{ bucket.category }}</td>
+                <td style="width: 10%;">{{ bucket.writer }}</td>
+                <td style="width: 70%;">{{ bucket.content }}</td>
+                {% if request.user == bucket.writer %}
+                  <td class="btn-group">
+                    <button type="button" class="btn btn-trasnparent action-btn btn-xs component-flat pr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="mdi mdi-dots-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="{% url 'buckets:update' bucket.id %}">수정</a>
+                      <a class="dropdown-item" href="{% url 'buckets:delete' bucket.id %}">삭제</a>
+                    </div>
+                  </td>
+                {% else %}
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  {% if buckets.has_previous %}
+    <a href="?page=1">1</a>
+    <a href="?page={{buckets.previous_page_number}}">◀</a>
+  {% endif %}
+  <span>{{buckets.number}}</span>
+  <span>of</span>
+  <span>{{buckets.paginator.num_pages}}</span>
+  {% if buckets.has_next %}
+    <a href="?page={{buckets.next_page_number}}">▶</a>
+    <a href="?page={{buckets.paginator.num_pages}}">{{buckets.paginator.num_pages}}</a>
+  {% endif %}
+</div>
+
+{% endblock %}
