@@ -10,23 +10,37 @@
       />
     </div>
     <div class="info-wrapper">
-      <p class="user-name">User</p>
-      <h6 id="display-address" class="display-income">주소</h6>
+      <p class="user-name" style="font-size: 20px;">{{user.username}}</p>
+      <h6 id="display-address" class="display-income" style="font-size: 16px;">주소</h6>
     </div>
 
   </div>
   <ul class="navigation-menu">
     <li class="nav-category-divider">MENU</li>
     <li>
-      <a href="{% url 'main' %}">
-        <span class="link-title">My Page</span>
-        <i class="mdi mdi-gauge link-icon"></i>
+      <a href="#toggle_mypage" data-toggle="collapse" aria-expanded="false">
+        <span class="link-title">Profile</span>
+        <i class="bi bi-person-circle link-icon"></i>
+      </a>
+      <ul class="collapse navigation-submenu" id="toggle_mypage">
+        <li>
+          <a href="">My Page</a>
+        </li>
+        <li>
+          <a href="{% url 'account_logout' %}">Logout</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="{% url 'buckets:view_bucket' %}">
+        <span class="link-title">Bucket List</span>
+        <i class="bi bi-bookmark-star link-icon"></i>
       </a>
     </li>
     <li>
       <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
         <span class="link-title">Board</span>
-        <i class="mdi mdi-flask link-icon"></i>
+        <i class="bi bi-clipboard-x link-icon"></i>
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
         <li>
@@ -40,48 +54,21 @@
         </li>
       </ul>
     </li>
-    <!-- 나중에 쓸까봐 남겨둠
-    <li>
-      <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
-        <span class="link-title">UI Elements</span>
-        <i class="mdi mdi-bullseye link-icon"></i>
-      </a>
-      <ul class="collapse navigation-submenu" id="ui-elements">
-        <li>
-          <a href="pages/ui-components/buttons.html">Buttons</a>
-        </li>
-        <li>
-          <a href="pages/ui-components/tables.html">Tables</a>
-        </li>
-        <li>
-          <a href="pages/ui-components/typography.html">Typography</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="pages/forms/form-elements.html">
-        <span class="link-title">Forms</span>
-        <i class="mdi mdi-clipboard-outline link-icon"></i>
-      </a>
-    </li>
-    <li>
-      <a href="pages/charts/chartjs.html">
-        <span class="link-title">Charts</span>
-        <i class="mdi mdi-chart-donut link-icon"></i>
-      </a>
-    </li>
-    <li>
-      <a href="pages/icons/material-icons.html">
-        <span class="link-title">Icons</span>
-        <i class="mdi mdi-flower-tulip-outline link-icon"></i>
-      </a>
-    </li>
-    -->
   </ul>
   {% else %}
   <div class="user-profile">
-   로그인하라는 창띄우고<br>로그인링크걸어두기
-
+    <div class="user-profile">
+      <a href="{% url 'account_login' %}">
+        <button type="button" class="btn btn-primary" style="width: 80%; margin: 0 10% 0 10%">
+          LOGIN
+        </button>
+      </a>
+      <a href="{% url 'account_signup' %}">
+        <button type="button" class="btn btn-default" style="width: 80%; margin: 3% 10% 0 10%">
+          SIGNUP
+        </button>
+      </a>
+    </div>
   </div>
   <ul class="navigation-menu">
     <li class="nav-category-divider">MENU</li>
