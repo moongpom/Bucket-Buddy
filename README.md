@@ -4,3 +4,4 @@
 * django
 * django-widget-tweaks
 * django-allauth
+* pillow

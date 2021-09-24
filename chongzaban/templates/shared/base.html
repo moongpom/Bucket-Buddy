@@ -21,11 +21,14 @@
     <link rel="stylesheet" href="{% static 'css/demo_1/style.css' %}" />
     <!-- Layout style -->
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+    
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ae62fa65184acae545a359f6f14c8d0&libraries=services"></script>
   </head>
   <body class="header-fixed">
     {% include 'partials/_header.html' %}
-    <script type="text/javascript"
-  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ae62fa65184acae545a359f6f14c8d0&libraries=services"></script>
   <!-- partial -->
   <div class="page-body">
     <!-- partial:partials/_sidebar.html -->
@@ -65,8 +68,7 @@
     <!-- page content ends -->
   </div>
   <!-- endbuild -->
-  <script src="{% static 'js/components/geolocation.js' %}"></script>
-      
+    <script src="{% static 'js/components/geolocation.js' %}"></script>
     <!-- jquery -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 

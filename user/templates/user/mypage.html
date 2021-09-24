@@ -1,0 +1,51 @@
+{% extends 'shared/base.html' %}
+{% block content %}
+<div class="col-lg-12">
+  <div class="grid">
+    <p class="grid-header">Image&Components Table</p>
+    <div class="item-wrapper">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Progress</th>
+              <th>Earnings</th>
+              <th>Target</th>
+              <th>Points</th>
+              <th>Sales</th>
+              <th>Started</th>
+              <th>Deadline</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="d-flex align-items-center border-top-0">
+                <img class="profile-img img-sm img-rounded mr-2" src="../../../assets/images/profile/male/image_5.png" alt="profile image">
+                <span>Herman Beck</span>
+              </td>
+              <td>
+                <div class="progress progress-slim">
+                  <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td>$23,563</td>
+              <td>$30,000</td>
+              <td>3454</td>
+              <td class="text-success"> 15.67% <i class="mdi mdi-arrow-up"></i>
+              </td>
+              <td>Jul 12, 2019 </td>
+              <td>Jar 23, 2019 </td>
+              <td class="actions">
+                <i class="mdi mdi-dots-vertical"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
