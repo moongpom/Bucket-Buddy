@@ -35,10 +35,13 @@
             padding-top:40px;
         }
     </style>
-   <!--로그인 한 사람만 글작성하기 뜨도록-->
-   
-   {% if user.is_authenticated %}
-    <a href="{% url 'newPost' cate%}">글 작성하기</a>
+
+    <!--로그인 한 사람만 글작성하기 뜨도록-->
+    <br>
+    {% if user.is_authenticated %}
+    <div class="btn btn-primary btn-rounded">
+        <a href="{% url 'newPost' cate%}" style="color: white;">글 작성하기</a>
+    </div>
     {%endif%}
 
     {% for unit in posts %}<!--근데 여기서는 항목별로 보이게 하려고 for문 써줌-->
