@@ -10,12 +10,11 @@ urlpatterns = [
 
    #게시판 카테고리
 
-   path('allPost/', allPost,name="allPost"),
-   path('free/',free,name="free"),
-   path('review/',review,name="review"),
-   path('suggest/',suggest,name="suggest"),
+   path('allPost/<str:cate>', allPost,name="allPost"),
 
-   
+   #검색
+   path('search/', SearchFormView, name='search'),
+
    #댓글
    path('deleteComment/<str:postId>/<str:commentId>',deleteComment,name="deleteComment"),
    path('update_review/<str:post_id>/<str:comment_id>', update_review, name="update_review"),

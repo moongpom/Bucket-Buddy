@@ -3,48 +3,15 @@
 {%block content %}
 
 {% load static %}
-<style>
-    
-     #contents{
-        overflow-y:scroll;
-        overflow-x:hidden;
-        }
-    #content{
-        width: 500px;
-        margin:auto;
-        padding-top: 30px;
-        padding-bottom: 30px;
-        margin-bottom: 10px;
-        background-color: rgb(247, 247, 247);
-       }    
-    form{
-        margin: auto;
-        background-color: rgb(247, 247, 247);
-        width: 500px;;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-    
-</style>
 
 
 <div class="postlist">
 <div id="contents">
     
         <br><br>
-       
-        <form action="." method="post"> {% csrf_token %}
-            <h1>제목/ 내용 검색</h1>
-                {{ form.as_table }} <!-- form을 테이블 형식으로 표시, 여기서 form은 views에서 넘겨준 PostSearchForm 객체임-->
-                <input type="submit" value="Submit" class="btn btn-primary btn-sm">
-                <hr width="300px">
-            </form>
-
-       
-        
             <br><br>
-             {% if object_list %}
-                {% for unit in object_list %}
+            {% if list %}
+                {% for unit in list %}
                 <div id="content">  
                     제목 | {{unit.title}}<br> 
                     작성자 | {{unit.writer}}<br>

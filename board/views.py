@@ -20,35 +20,15 @@ def detail(request,postId):
     commentForm = CommentForm()
     return  render(request,'detail.html',{'posts':post,'comments':comments,'re_comments':re_comments,'commentForms':commentForm})
 #게시판 카테고리 
-def allPost(request):
-    post=Post.objects.all().order_by('-id')
+def allPost(request,cate):
+    if cate=="all":
+        post=Post.objects.all().order_by('-id')
+    else :
+        post=Post.objects.filter( category = cate).order_by('-id')
     paginatorPost = Paginator(post, 10)
     page = request.GET.get('page')
     posts = paginatorPost.get_page(page)
-    cate="all"
     return render(request,"allPost.html",{'posts':posts,'cate':cate})
-def free(request):
-    post=Post.objects.filter( category = 'free').order_by('-id')
-    paginatorPost = Paginator(post, 10)
-    page = request.GET.get('page')
-    posts = paginatorPost.get_page(page)
-    cate="free"
-    return render(request,"allPost.html",{'posts':posts,'cate':cate})
-def review(request):
-    post=Post.objects.filter( category = 'review').order_by('-id')
-    paginatorPost = Paginator(post, 10)
-    page = request.GET.get('page')
-    posts = paginatorPost.get_page(page)
-    cate="review"
-    return render(request,"allPost.html",{'posts':posts,'cate':cate})
-def suggest(request):
-    post=Post.objects.filter( category = 'suggest').order_by('-id')
-    paginatorPost = Paginator(post, 10)
-    page = request.GET.get('page')
-    posts = paginatorPost.get_page(page)
-    cate="suggest"
-    return render(request,"allPost.html",{'posts':posts,'cate':cate})
-
 
 #새로운 글 작성 않이 이거 cate원하는대로 ㅇ안됨
 def new(request,cate):
@@ -145,3 +125,26 @@ def deleteComment(request,postId,commentId):
     deleteComment = get_object_or_404(Comment,pk=commentId)
     deleteComment.delete() #삭제해주는 메소드
     return redirect("detailPage",postId)
+'''
+#검색
+class SearchFormView(FormView):
+    form_class = PostSearchForm
+    template_name = 'search.html'
+
+    def form_valid(self, form):
+        searchWord = form.cleaned_data['search_word']
+        post_list = Post.objects.filter(Q(title__icontains=searchWord) | Q(body__icontains=searchWord) ).distinct().order_by('-id')
+
+        context = {}
+        context['form'] = form
+        context['search_term'] = searchWord
+        context['object_list'] = post_list
+
+        return render(self.request, self.template_name, context)'''
+
+def SearchFormView(request):
+    list = Post.objects.all()
+    search_key = request.GET.get('search_key') # 검색어 가져오기
+    if search_key: # 만약 검색어가 존재하면
+        list = list.filter(Q(title__icontains=search_key) | Q(body__icontains=search_key) ).distinct().order_by('-id')# 해당 검색어를 포함한 queryset 가져오기
+    return render(request, 'search.html', {'list':list})
