@@ -21,8 +21,8 @@
             <br>
             {% endfor %}
             <br>
-        {% elif search_term %}<!-- 검색란이 공란인지 확인-->
-            <b><i>Search Word({{ search_term }}) Not Found</i></b>
+        {% else%}<!-- 검색란이 공란인지 확인-->
+            <b><i>{{ search_key }}에 대한 검색이 없습니다</i></b>
         {% endif %}
     </div>
 </div>

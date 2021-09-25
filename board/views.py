@@ -147,4 +147,4 @@ def SearchFormView(request):
     search_key = request.GET.get('search_key') # 검색어 가져오기
     if search_key: # 만약 검색어가 존재하면
         list = list.filter(Q(title__icontains=search_key) | Q(body__icontains=search_key) ).distinct().order_by('-id')# 해당 검색어를 포함한 queryset 가져오기
-    return render(request, 'search.html', {'list':list})
+    return render(request, 'search.html', {'list':list,'search_key':search_key})

@@ -13,14 +13,15 @@
       >
         <i class="mdi mdi-menu"></i>
       </button>
-      <form action="#" class="t-header-search-box">
+      <form  class="t-header-search-box" action="{%url 'search' %}" method="get">
         <div class="input-group">
           <input
-            type="text"
-            class="form-control"
+            type="search" 
+            class="form-control me-2"
             id="inlineFormInputGroup"
-            placeholder="Search"
+            name="search_key" value="{{ search_key }}" placeholder="Search"
             autocomplete="off"
+            aria-label="Search" 
           />
           <button class="btn btn-primary" type="submit">
             <i class="mdi mdi-arrow-right-thick"></i>
