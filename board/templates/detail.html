@@ -125,11 +125,48 @@
         </script>
         {%csrf_token%}
         <br>
-        {% if posts.category == "free"%}<h1>자유게시판</h1>
-        {% elif posts.category == "review" %}<h1>후기 게시판</h1>
-        {% elif posts.category == "suggest"%}<h1>건의 게시판</h1>
-        {% else %} <h1>전체게시판</h1>
+        <div class="viewport-header">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb has-arrow">
+                    <li class="breadcrumb-item">
+                    <a href="#">Board</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {% if posts.category == "free"%} 자유
+                        {% elif posts.category == "review"%} 후기
+                        {% elif posts.category == "suggest"%} 건의
+                        {% else %} 전체
+                        {% endif %}
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        {% if posts.category == "free"%}<h4>자유게시판</h4>
+        {% elif posts.category == "review" %}<h4>후기 게시판</h4>
+        {% elif posts.category == "suggest"%}<h4>건의 게시판</h4>
+        {% else %} <h4>전체게시판</h4>
         {%endif%}
+        <br><br>
+        <div class="content-viewport">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="grid">
+                    <div class="grid-body">
+                        <h2 class="grid-title">Headings</h2>
+                        <div class="item-wrapper">
+                            <div class="form-group row showcase_row_area">
+                                <div class="col-md-2 showcase_text_area">
+                                </div>
+                                <div class="col-md-10 showcase_content_area">
+                                    <h4>{{posts.title}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
         <div id="left">
             <table class="detailTable">
                 
@@ -142,8 +179,10 @@
                 </td></tr>
             <!-- <tr><th>카테고리</th><td> {{posts.category}}</td></tr>-->
                 <tr><th>제목</th><td> {{posts.title}}</td></tr>
-                <tr><th>작성자</th> <td>  
+                <tr><th>작성자</th> <td> 
+                    <a href="{% url 'user:mypage' posts.writer.id %}">
                         {{posts.writer}}
+                    </a>
                     </td></tr>
                 <tr><th>본문</th><td height="200px"> {{posts.body}}</textarea></td></tr>
             </table>    
@@ -178,7 +217,7 @@
             <table id="cc">
                 <tr>
                     <td class="writer"><b>
-                        
+                    
                     {% if  posts.writer == comment.writer %}
                         {{comment.writer}}<who>(글쓴이)</who>
                     {% else%}
