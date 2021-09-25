@@ -3,7 +3,22 @@
 {%block content%}
    
     {% load static %}
-    
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb has-arrow">
+            <li class="breadcrumb-item">
+              <a href="#">Board</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                {% if cate == "free"%} 자유
+                {% elif cate == "review"%} 후기
+                {% elif cate == "suggest"%} 건의
+                {% else %} 전체
+                {% endif %}
+            </li>
+          </ol>
+        </nav>
+    </div>
     {% if cate == "free"%}<h1>자유게시판</h1>
     {% elif cate == "review"%}<h1>후기 게시판</h1>
     {% elif cate == "suggest"%}<h1>건의 게시판</h1>

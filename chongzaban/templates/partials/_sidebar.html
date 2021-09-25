@@ -79,24 +79,27 @@
   <ul class="navigation-menu">
     <li class="nav-category-divider">MENU</li>
     <li>
+      <a href="{% url 'buckets:view_bucket' %}">
+        <span class="link-title">Bucket List</span>
+        <i class="bi bi-bookmark-star link-icon"></i>
+      </a>
+    </li>
+    <li>
       <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
         <span class="link-title">Board</span>
         <i class="mdi mdi-flask link-icon"></i>
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
         <li>
-<<<<<<< HEAD
-          <a href="{% url 'allPost' %}" target="_blank">전체게시판</a>
+          <a href="{% url 'allPost' %}">전체게시판</a>
         </li>
         <li>
-          <a href="" target="_blank">자유게시판</a>
+          <a href="{% url 'free' %}" >자유게시판</a>
         </li>
         <li>
-          <a href="" target="_blank">건의하기</a>
+          <a href="{% url 'suggest' %}" >건의하기</a>
         </li>
         <li>
-          <a href="" target="_blank">후기</a>
-=======
           <a href="{% url 'allPost' 'all'%}">전체게시판</a>
         </li>
         <li>
@@ -107,11 +110,10 @@
         </li>
         <li>
           <a href="{% url 'allPost' 'review' %}" >후기</a>
->>>>>>> 67b9bf7 (merge)
         </li>
       </ul>
     </li>
-   
+  
   </ul>
   {%endif%}
 </div>
