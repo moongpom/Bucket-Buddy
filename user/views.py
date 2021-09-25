@@ -15,3 +15,6 @@ def mypage(request, id):
     'comments': Comment.objects.filter(writer = user),
   }
   return render(request, 'user/mypage.html', context)
+
+
+

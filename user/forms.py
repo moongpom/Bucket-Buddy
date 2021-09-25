@@ -14,7 +14,14 @@ class SignupForm(forms.Form):
     userProfile = Profile()
     userProfile.user = user
     userProfile.address = self.cleaned_data['address']
-    userProfile.photo = self.cleaned_data['photo']
+    #userProfile.photo = self.cleaned_data['photo']
+    if request.FILES.get('photo') is not None:
+           userProfile.photo =  request.FILES.get('photo')
+
+    print("===========")
+    print(userProfile.address)
+    print(userProfile.photo)
+    print("===========")
     userProfile.save()
     user.save()
     return user
