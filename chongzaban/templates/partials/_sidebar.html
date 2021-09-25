@@ -79,22 +79,28 @@
   <ul class="navigation-menu">
     <li class="nav-category-divider">MENU</li>
     <li>
+      <a href="{% url 'buckets:view_bucket' %}">
+        <span class="link-title">Bucket List</span>
+        <i class="bi bi-bookmark-star link-icon"></i>
+      </a>
+    </li>
+    <li>
       <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
         <span class="link-title">Board</span>
         <i class="mdi mdi-flask link-icon"></i>
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
         <li>
-          <a href="{% url 'allPost' %}" target="_blank">전체게시판</a>
+          <a href="{% url 'allPost' %}" >전체게시판</a>
         </li>
         <li>
-          <a href="" target="_blank">자유게시판</a>
+          <a href="" >자유게시판</a>
         </li>
         <li>
-          <a href="" target="_blank">건의하기</a>
+          <a href="" >건의하기</a>
         </li>
         <li>
-          <a href="" target="_blank">후기</a>
+          <a href="" >후기</a>
         </li>
       </ul>
     </li>
