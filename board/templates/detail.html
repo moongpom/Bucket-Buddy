@@ -1,99 +1,14 @@
 {%extends 'shared/base.html'%}
 
 {%block content%}
-   
-    {% load static %}
+
+{% load static %}
     
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Noto+Sans+KR:wght@700&family=Ultra&display=swap');
 
-    .whole {
-        font-family: 'Noto Sans KR', cursive, sans-serif;
-    }
-
-    table {
-        margin-right: auto;
-        margin-left: auto;
-        text-align: center;
-        width: 70%;
-        border-collapse: collapse;
-    }
-
-    td {
-        padding: 10px;
-    }
-
-    td:nth-child(1) {
-        width: 300px;
-    }
-
-    text {
-        font-weight: bold;
-        font-size: 20px;
-        color: rgb(2, 95, 7);
-        font-weight: bold;
-        margin: auto;
-    }
-
-    .header {
-        border-bottom: 1px solid green;
-    }
-
-    .detailTable {
-        background-color: rgb(235, 235, 235);
-        color: rgb(65, 65, 65);
-        border: 1px solid green;
-        word-break: break-all;
-        padding: 30px;
-    }
-
-    .writer {
-        background-color: rgb(190, 253, 214);
-        color: rgb(65, 65, 65);
-    }
-    .re_writer {
-        background-color: rgb(253, 203, 190);
-        color: rgb(65, 65, 65);
-    }
-    .text_body {
-        word-break: break-all;
-        padding: 30px;
-        background-color: white;
-    }
-    .re_comment_body {
-        word-break: break-all;
-        padding: 30px;
-        background-color: rgb(255, 255, 255);
-    }
-    .comment_body {
-        word-break: break-all;
-        padding: 30px;
-        background-color: rgb(255, 255, 255);
-    }
-    .re_comment{
-        margin-left: 150px;
-    }
-    date{
-        font-size: xx-small;
-    }
-    #cc{
-        margin-bottom: -40px;
-    }
 </style>
-    <style>
-        table,td,tr,th{
-            border:1px solid chocolate;
-            border-collapse: collapse;
-            padding: 10px;
-        }
-      /*  #left{
-            float: left;
-            width: 400px;
-        }
-        #comment{
-            width: 800px;
-        }*/
-        </style>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -147,53 +62,72 @@
         {% else %} <h4>전체게시판</h4>
         {%endif%}
         <br><br>
+
         <div class="content-viewport">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-md-12">
                     <div class="grid">
-                    <div class="grid-body">
-                        <h2 class="grid-title">Headings</h2>
                         <div class="item-wrapper">
-                            <div class="form-group row showcase_row_area">
-                                <div class="col-md-2 showcase_text_area">
-                                </div>
-                                <div class="col-md-10 showcase_content_area">
-                                    <h4>{{posts.title}}</h4>
-                                </div>
+                            <div class="table-responsive">
+                              <table class="table">
+                                <tbody>
+                                  <tr>
+                                    {% if posts.image %}
+                                        <img src= {{posts.image.url}} alt='image' height="300px">
+                                    {% else %}
+                                        <td class="d-flex align-items-center" colspan="2">등록한 사진 없음</td>
+                                    {% endif %}
+                                  </tr>
+                                  <tr>
+                                    <td style width="4">
+                                        <span>제목</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ posts.title }}</span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style>
+                                        <span>작성자</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <a href="{% url 'user:mypage' posts.writer.id %}">{{ posts.writer }}</a>
+                                        </span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style>
+                                        <span>날짜</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ posts.pub_date }}</span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style>
+                                        <span>내용</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ posts.body }}</span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
                             </div>
-                        </div>
+                          </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
         <div id="left">
-            <table class="detailTable">
-                
-                <tr><td colspan="2">
-                    {% if posts.image %}
-                    <img src= {{posts.image.url}} alt='image' height="300px">
-                    {% else %}
-                <br> 첨부사진없음<br><br>
-                    {% endif %}
-                </td></tr>
-            <!-- <tr><th>카테고리</th><td> {{posts.category}}</td></tr>-->
-                <tr><th>제목</th><td> {{posts.title}}</td></tr>
-                <tr><th>작성자</th> <td> 
-                    <a href="{% url 'user:mypage' posts.writer.id %}">
-                        {{posts.writer}}
-                    </a>
-                    </td></tr>
-                <tr><th>본문</th><td height="200px"> {{posts.body}}</textarea></td></tr>
-            </table>    
-            {{posts.pub_date}}<br>
             {% if user == posts.writer %}
-                        <a class="toNext" href="{% url 'editPost' posts.id%}" onclick="return editPost()">수정하기</a>
-                        <a class="toNext" href="{% url 'deletePost' posts.id%}"  onclick="return deletePost()">삭제하기</a>
-                        {% elif user.is_staff%}
-                        <a class="toNext" href="{% url 'deletePost' posts.id%}"  onclick="return deletePost()">삭제하기</a>
-                        {%endif%}
-
+                <button type="button" class="btn btn-primary btn-xs">수정하기</button>
+                <a class="toNext" href="{% url 'editPost' posts.id%}" onclick="return editPost()">수정하기</a>
+                <a class="toNext" href="{% url 'deletePost' posts.id%}"  onclick="return deletePost()">삭제하기</a>
+            {% elif user.is_staff%}
+                <a class="toNext" href="{% url 'deletePost' posts.id%}"  onclick="return deletePost()">삭제하기</a>
+            {%endif%}
         </div>
         <div id="comment"><br><br>
                         
