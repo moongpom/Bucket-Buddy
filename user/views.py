@@ -12,3 +12,6 @@ def mypage(request, id):
     'buckets': Bucket.objects.filter(writer = request.user)
   }
   return render(request, 'user/mypage.html', context)
+
+
+
