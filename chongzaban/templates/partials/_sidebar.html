@@ -91,20 +91,20 @@
       </a>
       <ul class="collapse navigation-submenu" id="sample-pages">
         <li>
-          <a href="{% url 'allPost' %}" >전체게시판</a>
+          <a href="{% url 'allPost' %}">전체게시판</a>
         </li>
         <li>
-          <a href="" >자유게시판</a>
+          <a href="{% url 'free' %}" >자유게시판</a>
         </li>
         <li>
-          <a href="" >건의하기</a>
+          <a href="{% url 'suggest' %}" >건의하기</a>
         </li>
         <li>
-          <a href="" >후기</a>
+          <a href="{% url 'review' %}" >후기</a>
         </li>
       </ul>
     </li>
-   
+  
   </ul>
   {%endif%}
 </div>

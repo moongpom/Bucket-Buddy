@@ -18,7 +18,6 @@
       <div class="grid-body">
         <form method="POST" action="{% url 'buckets:create' %}">
           {% csrf_token %}
-          {% if redirect_field_value %}
           <div class="row showcase_row_area">
             <div class="col-md-2 showcase_text_area">
               <label>카테고리</label>

@@ -1,12 +1,76 @@
 {%extends 'shared/base.html'%}
 
 {%block content%}
-   
-    <form method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-        <table>
-            {{edit_post.as_table}}
-        </table>
-        <button type="submit">올리기</button>
-    </form>
-    {%endblock%}
+
+<div class="row">
+    <div class="col-lg-12 col-md-9 col-sm-9 col-11 mx-auto">
+        <div class="grid">
+            <p class="grid-header">게시판 글 수정하기</p>
+            <div class="grid-body">
+                {% load widget_tweaks %}
+                <form  method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <div class="form-group row showcase_row_area">
+                        <div class="col-md-3 showcase_text_area">
+                            <label for="inputType14">{{ edit_post.title.label }}</label>
+                        </div>
+                        <div class="col-md-7 showcase_content_area">
+                            {% render_field edit_post.title class="form-control form-control-sm" id="inputType14" value="{{ edit_post.title }}" placeholder="제목" %}
+                            {% for error in edit_post.title.errors %}
+                                <span class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row showcase_row_area">
+                        <div class="col-md-3 showcase_text_area">
+                            <label>{{ edit_post.category.label }}</label>
+                        </div>
+                        <div class="col-md-7 showcase_content_area">
+                            <select class="custom-select" name="category">
+                                <option selected>게시판을 선택하세요.</option>
+                                <option value="free">자유게시판</option>
+                                <option value="review">후기게시판</option>
+                                <option value="suggest">건의하기</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row showcase_row_area">
+                        <div class="col-md-3 showcase_text_area">
+                            <label for="body">{{ edit_post.body.label }}</label>
+                        </div>
+                        <div class="col-md-7 showcase_content_area">
+                            {% render_field edit_post.body class="form-control form-control-sm" id="body" value="{{ edit_post.body }}" placeholder="내용" %}
+                            {% for error in edit_post.body.errors %}
+                                <span class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group row showcase_row_area">
+                        <div class="col-md-3 showcase_text_area">
+                            <label for="postform_image">{{ edit_post.image.label }}</label>
+                        </div>
+                        <div class="col-md-7 showcase_content_area">
+                            {% render_field edit_post.image type="file" id="postform_image" value="{{ edit_post.image }}" %}
+                            {% for error in edit_post.image.errors %}
+                                <span class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row showcase_row_area">
+                        <div class="col-md-3 showcase_text_area">
+                            <label for="postform_image"></label>
+                        </div>
+                        <div class="col-md-7 showcase_content_area">
+                            <button type="submit" class="btn btn-success has-icon btn-block mt-0">
+                                <i class="mdi mdi-comment-processing-outline"></i>작성하기
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
